@@ -1,0 +1,10 @@
+
+
+Sound reference
+Music loop 1		 : https://freesound.org/people/DirtyJewbs/sounds/137227/
+Retry SFX 		 : https://freesound.org/people/shapingwaves/sounds/362375/
+Pickup SFX 		 : https://freesound.org/people/FartBiscuit1700/sounds/368691/
+Dontpickup SFX 		 : https://freesound.org/people/Tissman/sounds/455020/
+GameStart SFX 		 : https://freesound.org/people/plasterbrain/sounds/243020/
+MenuButtonSelect SFX	 : https://freesound.org/people/Bertrof/sounds/131658/
+Goal SFX 		 : https://www.zapsplat.com/?s=win+00&post_type=music&sound-effect-category-id=
