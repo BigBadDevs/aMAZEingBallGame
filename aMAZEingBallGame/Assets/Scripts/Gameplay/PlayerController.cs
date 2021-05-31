@@ -6,35 +6,34 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject spawnLocation;
     public GameObject finishLocation;
-
+    public Rigidbody rb;
+ 
+    public float speed;
     public int scoreCount;
     public int retryCount;
 
-    CharacterController controller;
+
 
  
 	void Start()
 	{
         scoreCount = 0;
         retryCount = 0;
-
-        controller = this.GetComponent<CharacterController>();
-	}
+        rb = gameObject.GetComponent<Rigidbody>();
+    }
 	
 	void Update ()
 	{
-       
-	}
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
+        rb.AddForce(movement * speed * Time.deltaTime);
+    }
 	
 	void OnTriggerEnter(Collider other) 
 	{
-       // input wasd add force
-       // if ((Input.GetAxis("Horizontal") < 0)
-       // {
-       //     this.transform.
-       // }
-
-
         if (other.gameObject.tag == "Finish")               //change to run the score menu
         {
  
