@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
     public int scoreCount;
     public int retryCount;
 
+    private Collider[] ballCollisions;
 
 
- 
-	void Start()
+    void Start()
 	{
         scoreCount = 0;
         retryCount = 0;
@@ -30,6 +30,16 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
         rb.AddForce(movement * speed * Time.deltaTime);
+
+        ballCollisions = Physics.OverlapSphere(gameObject.transform.position, 0.78f);     // search for a player coliding with the ball
+        foreach (Collider index in ballCollisions)
+        {
+            if (index.CompareTag("Bounce"))
+            {
+                rb.AddForce((index.transform.position - gameObject.transform.position) * -100f);
+            }
+        }
+
     }
 	
 	void OnTriggerEnter(Collider other) 
@@ -53,9 +63,7 @@ public class PlayerController : MonoBehaviour
             scoreCount--;
         }
 
-        //
-
-	}
+    }
 
     private void OnMouseDown()      // reset to start
     {

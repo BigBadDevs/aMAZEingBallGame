@@ -37,11 +37,6 @@ public class TiltScript : MonoBehaviour {
         {
             transform.Rotate(-0.05f, 0, 0);
         }
-
-        
-
-       
+     
     }
-
-
 }
