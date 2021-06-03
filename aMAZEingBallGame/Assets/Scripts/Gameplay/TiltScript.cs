@@ -20,28 +20,23 @@ public class TiltScript : MonoBehaviour {
 
         if ((Input.GetAxis("TiltHorizontal") < 0 ) && (currentRot.z <= 4  || currentRot.z >= 355))
         {
-            transform.Rotate(0 , 0 , 0.2f );
+            transform.Rotate(0 , 0 , 0.05f );
         }
 
         if ((Input.GetAxis("TiltHorizontal") > 0 ) && (currentRot.z >= 356  || currentRot.z <= 5 ))
         {
-            transform.Rotate(0 , 0 , -0.2f );
+            transform.Rotate(0 , 0 , -0.05f);
         }
 
         if ((Input.GetAxis("TiltVertical") > 0) && (currentRot.x <= 4 || currentRot.x >= 355))
         {
-            transform.Rotate(0.2f , 0, 0);
+            transform.Rotate(0.05f , 0, 0);
         }
 
         if ((Input.GetAxis("TiltVertical") < 0) && (currentRot.x >= 356 || currentRot.x <= 5))
         {
-            transform.Rotate(-0.2f, 0, 0);
+            transform.Rotate(-0.05f, 0, 0);
         }
-
-        
-
-       
+     
     }
-
-
 }

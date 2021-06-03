@@ -21,7 +21,7 @@ public class SFXScript : MonoBehaviour {
             if (!alreadyPlayed)
             {
                 audioSource.PlayOneShot(soundToPlay, volume);
-                alreadyPlayed = true;
+                //alreadyPlayed = true;
                 Debug.Log("asdef");
             }
         }
