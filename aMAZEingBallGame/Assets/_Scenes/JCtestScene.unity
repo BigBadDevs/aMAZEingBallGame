@@ -2965,7 +2965,7 @@ PrefabInstance:
     - target: {fileID: 114941741814788162, guid: 3bb976398603de545a29797061887029,
         type: 3}
       propertyPath: speed
-      value: 500
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 114941741814788162, guid: 3bb976398603de545a29797061887029,
         type: 3}
@@ -2982,6 +2982,11 @@ PrefabInstance:
       propertyPath: PickUpSFX
       value: 
       objectReference: {fileID: 8300000, guid: 62dfc4642c8f8574882a43d8bb1e2ffe, type: 3}
+    - target: {fileID: 114941741814788162, guid: 3bb976398603de545a29797061887029,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 114941741814788162, guid: 3bb976398603de545a29797061887029,
         type: 3}
       propertyPath: audioSource
