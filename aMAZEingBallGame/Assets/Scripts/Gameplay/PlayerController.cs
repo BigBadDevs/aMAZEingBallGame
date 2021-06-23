@@ -7,17 +7,23 @@ public class PlayerController : MonoBehaviour
     public GameObject spawnLocation;
     public GameObject finishLocation;
     public Rigidbody rb;
- 
-    public float speed;
+    public float speed;                         // value of default speed. make private when finalised
+    public float staminaCost;                   // make private when finalised
+    public float staminaRegen;                  // make private when finalised
+    public float dashSpeed;                     // how fast is the dash? make private when finalised
     public int scoreCount;
     public int retryCount;
+
+
 
     // use this to adjust how much the player can jump and then make it private
     public int jumpHeight;
 
     private Collider[] ballCollisions;
     private float distToGround;
-
+    private float maxStamina = 100;
+    private float stamina = 100;
+    private float currSpeed;                    // current speed of the player for adding speed modifiers
 
     bool IsGrounded()
     {
@@ -34,6 +40,27 @@ public class PlayerController : MonoBehaviour
 	
 	void Update ()
 	{
+        if (Input.GetButton("Dash") && stamina >= staminaCost)
+        {
+            stamina -= staminaCost;
+            currSpeed = speed + dashSpeed;
+            Debug.Log("Dash");
+        }
+        else
+        {
+            if (stamina < maxStamina)
+            {
+                stamina += staminaRegen * Time.deltaTime;
+                Debug.Log("stamina ++");
+            }
+            else
+            {
+                Debug.Log("stamina =");
+                stamina = maxStamina;
+            }
+            currSpeed = speed;
+        }
+
         // in the input manager you can change these for mobile inputs like touch swipe or tilt
         // basic xz movement
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -41,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
 
-        rb.AddForce(movement * speed * Time.deltaTime);
+        rb.AddForce(movement * currSpeed * Time.deltaTime);
 
         // jump with button input
         if (Input.GetButton("Jump")&& IsGrounded())
