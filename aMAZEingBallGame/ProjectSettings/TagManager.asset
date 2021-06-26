@@ -9,6 +9,7 @@ TagManager:
   - ResetAlert
   - pause
   - Bounce
+  - TiltZone
   layers:
   - Default
   - TransparentFX
