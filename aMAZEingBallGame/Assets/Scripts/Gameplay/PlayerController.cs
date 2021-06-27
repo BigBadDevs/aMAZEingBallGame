@@ -7,10 +7,14 @@ public class PlayerController : MonoBehaviour
     public GameObject spawnLocation;
     public GameObject finishLocation;
     public Rigidbody rb;
+    public bool canTilt = false;
+
+    //make these private variables
     public float speed;                         // value of default speed. make private when finalised
     public float staminaCost;                   // make private when finalised
     public float staminaRegen;                  // make private when finalised
     public float dashSpeed;                     // how fast is the dash? make private when finalised
+   
     public int scoreCount;
     public int retryCount;
 
@@ -44,18 +48,18 @@ public class PlayerController : MonoBehaviour
         {
             stamina -= staminaCost;
             currSpeed = speed + dashSpeed;
-            Debug.Log("Dash");
+            //Debug.Log("Dash");
         }
         else
         {
             if (stamina < maxStamina)
             {
                 stamina += staminaRegen * Time.deltaTime;
-                Debug.Log("stamina ++");
+                //Debug.Log("stamina ++");
             }
             else
             {
-                Debug.Log("stamina =");
+                //Debug.Log("stamina =");
                 stamina = maxStamina;
             }
             currSpeed = speed;
@@ -91,12 +95,18 @@ public class PlayerController : MonoBehaviour
 	{
         if (other.gameObject.tag == "Finish")               //change to run the score menu
         {
- 
+
             transform.position = finishLocation.transform.position;
+        }
+        else if (other.gameObject.tag == "Reset")               //change to run the score menu
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+            transform.position = spawnLocation.transform.position;
+            retryCount++;
         }
         else if (other.gameObject.tag == "PickUp")          //destroy pickup and add to score
         {
-            other.gameObject.GetComponent<MeshRenderer>().enabled = false ;
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             other.gameObject.GetComponent<Collider>().enabled = false;
             scoreCount++;
         }
@@ -107,12 +117,23 @@ public class PlayerController : MonoBehaviour
             other.gameObject.GetComponent<Collider>().enabled = false;
             scoreCount--;
         }
+        else if (other.gameObject.tag == "TiltZone")
+        {
+            canTilt = true;
+        }
 
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "TiltZone")
+        {
+            canTilt = false;
+        }
     }
 
     private void OnMouseDown()      // reset to start
     {
-
+        rb.velocity = new Vector3(0, 0, 0);
         transform.position = spawnLocation.transform.position;
         retryCount++;
     }
