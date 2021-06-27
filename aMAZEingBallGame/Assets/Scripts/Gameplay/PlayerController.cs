@@ -98,6 +98,12 @@ public class PlayerController : MonoBehaviour
 
             transform.position = finishLocation.transform.position;
         }
+        else if (other.gameObject.tag == "Reset")               //change to run the score menu
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+            transform.position = spawnLocation.transform.position;
+            retryCount++;
+        }
         else if (other.gameObject.tag == "PickUp")          //destroy pickup and add to score
         {
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -114,7 +120,6 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.tag == "TiltZone")
         {
             canTilt = true;
-            Debug.Log("enter tiltzone");
         }
 
     }
@@ -128,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnMouseDown()      // reset to start
     {
-
+        rb.velocity = new Vector3(0, 0, 0);
         transform.position = spawnLocation.transform.position;
         retryCount++;
     }

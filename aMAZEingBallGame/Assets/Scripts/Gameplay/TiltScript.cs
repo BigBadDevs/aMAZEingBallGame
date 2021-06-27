@@ -6,8 +6,9 @@ public class TiltScript : MonoBehaviour {
 
     public Vector3 currentRot;
     public GameObject player;
+    public float maxRotation;
     private float rotationSpeed = 0.05f;
-    private float maxRotation = 12;
+    
 
 	// Use this for initialization
 	void Start () {
