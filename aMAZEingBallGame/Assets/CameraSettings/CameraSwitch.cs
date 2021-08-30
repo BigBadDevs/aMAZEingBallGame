@@ -5,17 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CameraSwitch : MonoBehaviour
 {
-    [SerializeField]
-    private InputAction left;
-    [SerializeField]
-    private InputAction right;
-    [SerializeField]
-    private InputAction up;
-    [SerializeField]
-    private InputAction back;
-    [SerializeField]
-    private InputAction front;
-
+    private InputMaster inputMaster;
 
     private Animator animator;
     private string currentState;
@@ -27,48 +17,27 @@ public class CameraSwitch : MonoBehaviour
     const string THIRDCAMERA_RIGHT = "3rdPersonRightState";
     const string THIRDCAMERA_UP = "3rdPersonUpState";
 
-
-
+    //Defining the direction and reset variables for looping (if reset 0 set to west ie)
+    enum Direction {Reset0, North, East, South, West, Reset5};
+    private Direction currentDirection = Direction.North;
 
 
     private void Awake()
     {
+        inputMaster = new InputMaster();
+        inputMaster.Camera.Enable();
+        inputMaster.Camera.turnLeft.performed += left;
+        inputMaster.Camera.turnRight.performed += right;
+
         animator = GetComponent<Animator>();
     }
 
-    private void OnEnable()
-    {
-        left.Enable();
-        right.Enable();
-        front.Enable();
-        up.Enable();
-        back.Enable();
-
     
-    }
-    
-    private void OnDisable()
-    {
-        left.Disable();
-        right.Disable();
-        front.Disable();
-        up.Disable();
-        back.Disable();
-
-    }
-    
-    // Start is called before the first frame update
     void Update()
-    {    
-     left.performed += _ => ChangeAnimationState(THIRDCAMERA_LEFT);
-            
-     right.performed += _ => ChangeAnimationState(THIRDCAMERA_RIGHT);
-            
-     up.performed += _ => ChangeAnimationState(THIRDCAMERA_UP);
-            
-     back.performed += _ => ChangeAnimationState(THIRDCAMERA_BACK);
-            
-     front.performed += _ => ChangeAnimationState(THIRDCAMERA_FRONT);
+    {   
+
+
+
     }
 
     void ChangeAnimationState(string newState)
@@ -83,5 +52,62 @@ public class CameraSwitch : MonoBehaviour
         currentState = newState;
     }
 
-   
+    public void left(InputAction.CallbackContext context)
+    {
+        //Debug.Log("Left performed");
+        if(context.performed)
+        {
+            currentDirection = turnLeft(currentDirection);
+            setAnimation();
+        }
+        
+    }
+    public void right(InputAction.CallbackContext context)
+    {
+        //Debug.Log("Right performed");
+        if (context.performed)
+        {
+            currentDirection = turnRight(currentDirection);
+            setAnimation();
+        }
+    }
+
+    Direction turnLeft(Direction dir)
+    {
+        Debug.Log("current Direction: " + dir);
+        dir -= 1;
+        if (dir == Direction.Reset0)
+        {
+            dir = Direction.West;
+        }
+        Debug.Log("new Direction: " + dir);
+        
+        return dir;
+    }
+
+    Direction turnRight(Direction dir)
+    {
+        dir += 1;
+        if (dir == Direction.Reset5)
+        {
+            dir = Direction.North;
+        }
+        
+        return dir;
+    }
+
+    void setAnimation()
+    {
+        // after turn function, set the corresponding animation state
+        if (currentDirection == Direction.North)
+        { ChangeAnimationState(THIRDCAMERA_BACK); }
+        else if (currentDirection == Direction.East)
+        { ChangeAnimationState(THIRDCAMERA_RIGHT); }
+        else if (currentDirection == Direction.South)
+        { ChangeAnimationState(THIRDCAMERA_FRONT); }
+        else if (currentDirection == Direction.West)
+        { ChangeAnimationState(THIRDCAMERA_LEFT); }
+    }
+
+
 }
