@@ -103,6 +103,52 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Camera"",
+            ""id"": ""45e21984-8d69-4792-88a0-9fab73c6e3c0"",
+            ""actions"": [
+                {
+                    ""name"": ""turnLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""6a9c9d5b-e8d4-462c-b132-a5c4ff9dafe2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""turnRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ce415f1-b97e-49f8-b865-3e69123acaa1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""61b10a4f-88d4-45c8-bedb-c53e164c9461"",
+                    ""path"": ""<Keyboard>/numpad4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard and mouses"",
+                    ""action"": ""turnLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c3269bd-e685-40fd-8876-3af35cb6f402"",
+                    ""path"": ""<Keyboard>/numpad6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard and mouses"",
+                    ""action"": ""turnRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -128,6 +174,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        // Camera
+        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_turnLeft = m_Camera.FindAction("turnLeft", throwIfNotFound: true);
+        m_Camera_turnRight = m_Camera.FindAction("turnRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -214,6 +264,47 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Camera
+    private readonly InputActionMap m_Camera;
+    private ICameraActions m_CameraActionsCallbackInterface;
+    private readonly InputAction m_Camera_turnLeft;
+    private readonly InputAction m_Camera_turnRight;
+    public struct CameraActions
+    {
+        private @InputMaster m_Wrapper;
+        public CameraActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @turnLeft => m_Wrapper.m_Camera_turnLeft;
+        public InputAction @turnRight => m_Wrapper.m_Camera_turnRight;
+        public InputActionMap Get() { return m_Wrapper.m_Camera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+        public void SetCallbacks(ICameraActions instance)
+        {
+            if (m_Wrapper.m_CameraActionsCallbackInterface != null)
+            {
+                @turnLeft.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnTurnLeft;
+                @turnLeft.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnTurnLeft;
+                @turnLeft.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnTurnLeft;
+                @turnRight.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnTurnRight;
+                @turnRight.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnTurnRight;
+                @turnRight.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnTurnRight;
+            }
+            m_Wrapper.m_CameraActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @turnLeft.started += instance.OnTurnLeft;
+                @turnLeft.performed += instance.OnTurnLeft;
+                @turnLeft.canceled += instance.OnTurnLeft;
+                @turnRight.started += instance.OnTurnRight;
+                @turnRight.performed += instance.OnTurnRight;
+                @turnRight.canceled += instance.OnTurnRight;
+            }
+        }
+    }
+    public CameraActions @Camera => new CameraActions(this);
     private int m_keyboardandmousesSchemeIndex = -1;
     public InputControlScheme keyboardandmousesScheme
     {
@@ -227,5 +318,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+    }
+    public interface ICameraActions
+    {
+        void OnTurnLeft(InputAction.CallbackContext context);
+        void OnTurnRight(InputAction.CallbackContext context);
     }
 }
