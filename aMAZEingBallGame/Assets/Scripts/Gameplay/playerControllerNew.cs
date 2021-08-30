@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Ballinput : MonoBehaviour
+public class playerControllerNew : MonoBehaviour
 {
     private Rigidbody Ball_rigidbody;
-   // private PlayerInput playerInput;
     private InputMaster inputmaster;
+
+
 
     private void Awake()
     {
@@ -39,5 +40,12 @@ public class Ballinput : MonoBehaviour
     bool IsGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.1f);
+    }
+
+    public void Reset()
+    {
+        Ball_rigidbody.velocity = new Vector3(0, 0, 0);
+        transform.position = GameObject.Find("/world/Spawn point").transform.position;
+        //retryCount++;
     }
 }
