@@ -29,10 +29,15 @@ public class Ballinput : MonoBehaviour
     public void Jump (InputAction.CallbackContext context)
     {
         Debug.Log(context);
-        if(context.performed)
+        if(context.performed && IsGrounded())
         {
             Debug.Log("jump!" + context.phase);
             Ball_rigidbody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
         }    
+    }
+
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.1f);
     }
 }
