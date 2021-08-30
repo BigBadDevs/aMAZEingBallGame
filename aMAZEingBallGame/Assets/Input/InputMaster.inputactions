@@ -90,6 +90,52 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Camera",
+            "id": "45e21984-8d69-4792-88a0-9fab73c6e3c0",
+            "actions": [
+                {
+                    "name": "turnLeft",
+                    "type": "Button",
+                    "id": "6a9c9d5b-e8d4-462c-b132-a5c4ff9dafe2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "turnRight",
+                    "type": "Button",
+                    "id": "9ce415f1-b97e-49f8-b865-3e69123acaa1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "61b10a4f-88d4-45c8-bedb-c53e164c9461",
+                    "path": "<Keyboard>/numpad4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keyboard and mouses",
+                    "action": "turnLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c3269bd-e685-40fd-8876-3af35cb6f402",
+                    "path": "<Keyboard>/numpad6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keyboard and mouses",
+                    "action": "turnRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
