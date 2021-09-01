@@ -32,9 +32,13 @@ public class playerControllerNew : MonoBehaviour
 
         if (moveDirection.magnitude >= 0.1f)
         {
+            //calculate input direction using camera angle
             float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             
+            //create a direction variable
             Vector3 moveTarget = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            
+            //add force in direction of new variable
             Ball_rigidbody.AddForce(moveTarget.normalized * speed, ForceMode.Force);
         }
     }
