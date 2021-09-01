@@ -5,6 +5,11 @@ using UnityEngine.InputSystem;
 
 public class playerControllerNew : MonoBehaviour
 {
+    public Transform cam;
+
+    private float speed = 1f;
+    private float asdef;
+
     private Rigidbody Ball_rigidbody;
     private InputMaster inputmaster;
 
@@ -23,8 +28,15 @@ public class playerControllerNew : MonoBehaviour
     private void Update()
     {
         Vector2 inputVector = inputmaster.Player.Movement.ReadValue<Vector2>();
-        float speed = 1f;
-        Ball_rigidbody.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * speed, ForceMode.Force);
+        Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+
+        if (moveDirection.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            
+            Vector3 moveTarget = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            Ball_rigidbody.AddForce(moveTarget.normalized * speed, ForceMode.Force);
+        }
     }
 
     public void Jump (InputAction.CallbackContext context)

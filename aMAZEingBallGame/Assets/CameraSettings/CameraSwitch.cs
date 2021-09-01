@@ -74,23 +74,22 @@ public class CameraSwitch : MonoBehaviour
 
     Direction turnLeft(Direction dir)
     {
-        Debug.Log("current Direction: " + dir);
-        dir -= 1;
-        if (dir == Direction.Reset0)
+
+        dir += 1;
+        if (dir == Direction.Reset5)
         {
-            dir = Direction.West;
+            dir = Direction.North;
         }
-        Debug.Log("new Direction: " + dir);
-        
+
         return dir;
     }
 
     Direction turnRight(Direction dir)
     {
-        dir += 1;
-        if (dir == Direction.Reset5)
+        dir -= 1;
+        if (dir == Direction.Reset0)
         {
-            dir = Direction.North;
+            dir = Direction.West;
         }
         
         return dir;
