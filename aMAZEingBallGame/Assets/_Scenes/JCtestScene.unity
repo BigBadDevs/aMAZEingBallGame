@@ -204,6 +204,24 @@ Transform:
   m_Father: {fileID: 1270106534}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &44249065 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3945661699123184973, guid: d3f15736b89e9f24487277e892133ac9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3945661700895522572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &44249071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44249065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a9fef1ef34b6c4db7a4abec2acbee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &109460175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2036,6 +2054,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BALLPLAYER
       objectReference: {fileID: 0}
+    - target: {fileID: 3085869653896010355, guid: 1608dcd9fb107a541807738385049210,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 3086737476910123777, guid: 1608dcd9fb107a541807738385049210,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -2096,6 +2119,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.1261654
       objectReference: {fileID: 0}
+    - target: {fileID: 3086737478850812066, guid: 1608dcd9fb107a541807738385049210,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1759606652}
     - target: {fileID: 7699392707453891193, guid: 1608dcd9fb107a541807738385049210,
         type: 3}
       propertyPath: m_RootOrder
@@ -3701,7 +3729,7 @@ PrefabInstance:
     - target: {fileID: 3553426403596596509, guid: c8d3a5379d6dded4e90614676bfd2e3c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.4
+      value: 18.93
       objectReference: {fileID: 0}
     - target: {fileID: 3553426403596596509, guid: c8d3a5379d6dded4e90614676bfd2e3c,
         type: 3}
