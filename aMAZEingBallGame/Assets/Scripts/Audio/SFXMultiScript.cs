@@ -17,12 +17,9 @@ public class SFXMultiScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Player")
+        if (other.CompareTag("Player"))
         {
-
                 audioSource.PlayOneShot(soundToPlay, volume);
-                Debug.Log("asdef");
-            
         }
     }
 }

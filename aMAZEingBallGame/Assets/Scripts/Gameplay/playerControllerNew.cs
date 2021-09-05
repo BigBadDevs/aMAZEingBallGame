@@ -48,10 +48,8 @@ public class PlayerControllerNew : MonoBehaviour
 
     public void Jump (InputAction.CallbackContext context)
     {
-        Debug.Log(context);
         if(context.performed && IsGrounded())
         {
-            Debug.Log("jump!" + context.phase);
             rigidBody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
         }    
     }
