@@ -22,7 +22,7 @@ public class TiltScript : MonoBehaviour {
         currentRot = GetComponent<Transform>().eulerAngles;
         transform.rotation = Quaternion.Euler(currentRot.x, 0.0f, currentRot.z);
 
-        if (player.GetComponent < PlayerController > ().canTilt == true)
+        if (player.GetComponent < PlayerControllerNew > ().canTilt == true)
         {
             if ((Input.GetAxis("TiltHorizontal") > 0) && (currentRot.z <= maxRotation || currentRot.z >= 359 - maxRotation))
             {
