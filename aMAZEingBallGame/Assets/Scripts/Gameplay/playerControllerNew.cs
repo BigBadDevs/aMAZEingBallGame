@@ -3,31 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerControllerNew : MonoBehaviour
+public class PlayerControllerNew : MonoBehaviour
 {
+    public Rigidbody rigidBody;
     public Transform cam;
+    public bool canTilt = false;
+    public int scoreCount;
+    public int retryCount;
 
-    private float speed = 1f;
-    private float asdef;
-
-    private Rigidbody Ball_rigidbody;
-    private InputMaster inputmaster;
+    private float speed; 
+    private InputMaster inputMaster;
 
 
 
     private void Awake()
     {
-        Ball_rigidbody = GetComponent<Rigidbody>();
-       // playerInput = GetComponent<PlayerInput>();
+        rigidBody = GetComponent<Rigidbody>();
+        // playerInput = GetComponent<PlayerInput>();
 
-        inputmaster = new InputMaster();
-        inputmaster.Player.Enable();
-        inputmaster.Player.Jump.performed += Jump;
+        speed = 1f;
+
+        inputMaster = new InputMaster();
+        inputMaster.Player.Enable();
+        inputMaster.Player.Jump.performed += Jump;
     }
 
     private void Update()
     {
-        Vector2 inputVector = inputmaster.Player.Movement.ReadValue<Vector2>();
+        Vector2 inputVector = inputMaster.Player.Movement.ReadValue<Vector2>();
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
 
         if (moveDirection.magnitude >= 0.1f)
@@ -39,7 +42,7 @@ public class playerControllerNew : MonoBehaviour
             Vector3 moveTarget = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             
             //add force in direction of new variable
-            Ball_rigidbody.AddForce(moveTarget.normalized * speed, ForceMode.Force);
+            rigidBody.AddForce(moveTarget.normalized * speed, ForceMode.Force);
         }
     }
 
@@ -49,7 +52,7 @@ public class playerControllerNew : MonoBehaviour
         if(context.performed && IsGrounded())
         {
             Debug.Log("jump!" + context.phase);
-            Ball_rigidbody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+            rigidBody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
         }    
     }
 
@@ -60,8 +63,8 @@ public class playerControllerNew : MonoBehaviour
 
     public void Reset()
     {
-        Ball_rigidbody.velocity = new Vector3(0, 0, 0);
+        rigidBody.velocity = new Vector3(0, 0, 0);
         transform.position = GameObject.Find("/world/Spawn point").transform.position;
-        //retryCount++;
+        retryCount++;
     }
 }
