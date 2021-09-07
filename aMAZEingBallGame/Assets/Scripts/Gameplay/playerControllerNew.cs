@@ -10,6 +10,7 @@ public class PlayerControllerNew : MonoBehaviour
     public bool canTilt = false;
     public int scoreCount;
     public int retryCount;
+    public float jumpHeight;
 
     private float speed; 
     private InputMaster inputMaster;
@@ -48,11 +49,9 @@ public class PlayerControllerNew : MonoBehaviour
 
     public void Jump (InputAction.CallbackContext context)
     {
-        Debug.Log(context);
         if(context.performed && IsGrounded())
         {
-            Debug.Log("jump!" + context.phase);
-            rigidBody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+            rigidBody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }    
     }
 
