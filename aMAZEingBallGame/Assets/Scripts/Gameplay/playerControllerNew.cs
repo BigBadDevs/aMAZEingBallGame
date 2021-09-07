@@ -10,6 +10,7 @@ public class PlayerControllerNew : MonoBehaviour
     public bool canTilt = false;
     public int scoreCount;
     public int retryCount;
+    public float jumpHeight;
 
     private float speed; 
     private InputMaster inputMaster;
@@ -50,7 +51,7 @@ public class PlayerControllerNew : MonoBehaviour
     {
         if(context.performed && IsGrounded())
         {
-            rigidBody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+            rigidBody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }    
     }
 
