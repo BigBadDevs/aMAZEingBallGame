@@ -11,6 +11,7 @@ TagManager:
   - Bounce
   - TiltZone
   - Reset
+  - spheremask
   layers:
   - Default
   - TransparentFX
