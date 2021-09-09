@@ -16,10 +16,16 @@ public class HowToPlayScript : MonoBehaviour
         box.localPosition = new Vector2(0, -Screen.height);
         box.LeanMoveLocalY(0, 0.5f).setEaseOutExpo().delay = 0.1f;
     }
-    //
+    
     public void ClosePanel() 
     {
         backGround.LeanAlpha(0, 0.5f);
-        box.LeanMoveLocalY(-Screen.height, 0.5f).setEaseOutExpo();
+        box.LeanMoveLocalY(-Screen.height, 0.5f).setEaseOutExpo().setOnComplete(OnComplete);
+
+    }
+
+    void OnComplete()
+    {
+        gameObject.SetActive(false);
     }
 }
