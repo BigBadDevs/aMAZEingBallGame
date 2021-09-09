@@ -11,5 +11,5 @@ Shader "Custom/Mask"
 			Pass {
 				ZWrite Off
 			}
-	}
+	    }
 }
