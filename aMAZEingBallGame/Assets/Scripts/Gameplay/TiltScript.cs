@@ -15,7 +15,7 @@ public class TiltScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        rotationSpeed = 0.05f;
+        rotationSpeed = 5f;
         currentRot = new Vector3(0.0f, 0.0f, 0.0f);
         transform.Rotate(0, 0, 0);
 

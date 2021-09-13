@@ -10,21 +10,9 @@ public class LoadResults : MonoBehaviour
     public GameObject UIRef;
     public GameObject UITimeRef;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")               //Enables the Results screen > transfers timer data > disables game HUD
+        if (other.CompareTag("Player"))               //Enables the Results screen > transfers timer data > disables game HUD
         {
             UITimeRef.GetComponent<TimerScript>().counting = false;
             resultsScreenRef.SetActive(true);

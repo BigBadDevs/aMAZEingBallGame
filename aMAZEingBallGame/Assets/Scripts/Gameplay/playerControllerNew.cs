@@ -11,8 +11,8 @@ public class PlayerControllerNew : MonoBehaviour
     public int scoreCount;
     public int retryCount;
     public float jumpHeight;
+    public float speed;
 
-    private float speed; 
     private InputMaster inputMaster;
 
 
