@@ -22,9 +22,33 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Tilt",
+                    "name": "TiltXp",
                     "type": "Button",
                     "id": "c5614eb4-2fc0-4f53-860b-d1d9fc494a7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TiltXm",
+                    "type": "Button",
+                    "id": "65c0208f-13d1-4bda-bf2b-3fcd40e6aaca",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TiltZp",
+                    "type": "Button",
+                    "id": "63922765-f33d-4086-bfb4-013d1a522d6f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TiltZm",
+                    "type": "Button",
+                    "id": "d9df2c17-82e7-4d86-8159-8d3731a060b6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -99,12 +123,45 @@
                 },
                 {
                     "name": "",
-                    "id": "61a30bff-3081-4625-8630-b5dfea162713",
-                    "path": "",
+                    "id": "c78d76f0-0d82-4b34-99ed-7191dbe9251a",
+                    "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Tilt",
+                    "groups": "keyboard and mouses",
+                    "action": "TiltXp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6be3398d-2a9e-4a51-8617-f46bb703dee5",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keyboard and mouses",
+                    "action": "TiltXm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c25d37d9-7311-4e73-a6f9-9613e4b181e2",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keyboard and mouses",
+                    "action": "TiltZp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ba9fcf6-859c-470d-a5c6-3f38920a41f5",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keyboard and mouses",
+                    "action": "TiltZm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
