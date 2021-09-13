@@ -35,33 +35,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""TiltXp"",
+                    ""name"": ""Tilt"",
                     ""type"": ""Button"",
                     ""id"": ""c5614eb4-2fc0-4f53-860b-d1d9fc494a7c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""TiltXm"",
-                    ""type"": ""Button"",
-                    ""id"": ""65c0208f-13d1-4bda-bf2b-3fcd40e6aaca"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""TiltZp"",
-                    ""type"": ""Button"",
-                    ""id"": ""63922765-f33d-4086-bfb4-013d1a522d6f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""TiltZm"",
-                    ""type"": ""Button"",
-                    ""id"": ""d9df2c17-82e7-4d86-8159-8d3731a060b6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -136,45 +112,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c78d76f0-0d82-4b34-99ed-7191dbe9251a"",
-                    ""path"": ""<Keyboard>/h"",
+                    ""id"": ""61a30bff-3081-4625-8630-b5dfea162713"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""keyboard and mouses"",
-                    ""action"": ""TiltXp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6be3398d-2a9e-4a51-8617-f46bb703dee5"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""keyboard and mouses"",
-                    ""action"": ""TiltXm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c25d37d9-7311-4e73-a6f9-9613e4b181e2"",
-                    ""path"": ""<Keyboard>/g"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""keyboard and mouses"",
-                    ""action"": ""TiltZp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2ba9fcf6-859c-470d-a5c6-3f38920a41f5"",
-                    ""path"": ""<Keyboard>/t"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""keyboard and mouses"",
-                    ""action"": ""TiltZm"",
+                    ""groups"": """",
+                    ""action"": ""Tilt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -250,10 +193,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_TiltXp = m_Player.FindAction("TiltXp", throwIfNotFound: true);
-        m_Player_TiltXm = m_Player.FindAction("TiltXm", throwIfNotFound: true);
-        m_Player_TiltZp = m_Player.FindAction("TiltZp", throwIfNotFound: true);
-        m_Player_TiltZm = m_Player.FindAction("TiltZm", throwIfNotFound: true);
+        m_Player_Tilt = m_Player.FindAction("Tilt", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_turnLeft = m_Camera.FindAction("turnLeft", throwIfNotFound: true);
@@ -309,20 +249,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_TiltXp;
-    private readonly InputAction m_Player_TiltXm;
-    private readonly InputAction m_Player_TiltZp;
-    private readonly InputAction m_Player_TiltZm;
+    private readonly InputAction m_Player_Tilt;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
         public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @TiltXp => m_Wrapper.m_Player_TiltXp;
-        public InputAction @TiltXm => m_Wrapper.m_Player_TiltXm;
-        public InputAction @TiltZp => m_Wrapper.m_Player_TiltZp;
-        public InputAction @TiltZm => m_Wrapper.m_Player_TiltZm;
+        public InputAction @Tilt => m_Wrapper.m_Player_Tilt;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -338,18 +272,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @TiltXp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltXp;
-                @TiltXp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltXp;
-                @TiltXp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltXp;
-                @TiltXm.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltXm;
-                @TiltXm.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltXm;
-                @TiltXm.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltXm;
-                @TiltZp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltZp;
-                @TiltZp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltZp;
-                @TiltZp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltZp;
-                @TiltZm.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltZm;
-                @TiltZm.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltZm;
-                @TiltZm.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltZm;
+                @Tilt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTilt;
+                @Tilt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTilt;
+                @Tilt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTilt;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -360,18 +285,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @TiltXp.started += instance.OnTiltXp;
-                @TiltXp.performed += instance.OnTiltXp;
-                @TiltXp.canceled += instance.OnTiltXp;
-                @TiltXm.started += instance.OnTiltXm;
-                @TiltXm.performed += instance.OnTiltXm;
-                @TiltXm.canceled += instance.OnTiltXm;
-                @TiltZp.started += instance.OnTiltZp;
-                @TiltZp.performed += instance.OnTiltZp;
-                @TiltZp.canceled += instance.OnTiltZp;
-                @TiltZm.started += instance.OnTiltZm;
-                @TiltZm.performed += instance.OnTiltZm;
-                @TiltZm.canceled += instance.OnTiltZm;
+                @Tilt.started += instance.OnTilt;
+                @Tilt.performed += instance.OnTilt;
+                @Tilt.canceled += instance.OnTilt;
             }
         }
     }
@@ -430,10 +346,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnTiltXp(InputAction.CallbackContext context);
-        void OnTiltXm(InputAction.CallbackContext context);
-        void OnTiltZp(InputAction.CallbackContext context);
-        void OnTiltZm(InputAction.CallbackContext context);
+        void OnTilt(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
