@@ -22,7 +22,6 @@ public class SFXScript : MonoBehaviour {
             {
                 audioSource.PlayOneShot(soundToPlay, volume);
                 alreadyPlayed = true;
-                Debug.Log("asdef");
             }
         }
     }
