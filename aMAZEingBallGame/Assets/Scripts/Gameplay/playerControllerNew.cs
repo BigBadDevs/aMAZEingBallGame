@@ -22,7 +22,7 @@ public class PlayerControllerNew : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         // playerInput = GetComponent<PlayerInput>();
 
-        speed = 1f;
+        speed = 200f;
 
         inputMaster = new InputMaster();
         inputMaster.Player.Enable();
@@ -43,7 +43,8 @@ public class PlayerControllerNew : MonoBehaviour
             Vector3 moveTarget = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             
             //add force in direction of new variable
-            rigidBody.AddForce(moveTarget.normalized * speed, ForceMode.Force);
+            rigidBody.AddForce(moveTarget.normalized * speed * Time.deltaTime, ForceMode.Force);
+
         }
     }
 

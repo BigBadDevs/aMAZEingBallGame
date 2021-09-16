@@ -14,17 +14,15 @@ public class TiltScript : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
-        rotationSpeed = 5f;
+    void Start () 
+    {
+        rotationSpeed = 0.05f;
         currentRot = new Vector3(0.0f, 0.0f, 0.0f);
         transform.Rotate(0, 0, 0);
 
         inputMaster = new InputMaster();
         inputMaster.Player.Enable();
         inputMaster.Player.TiltXp.performed += TiltXp;
-        inputMaster.Player.TiltZp.performed += TiltZp;
-        inputMaster.Player.TiltXm.performed += TiltXm;
-        inputMaster.Player.TiltZm.performed += TiltZm;
     }
 
     public void TiltXp(InputAction.CallbackContext context)
@@ -35,36 +33,28 @@ public class TiltScript : MonoBehaviour {
             transform.Rotate(rotationSpeed, 0, 0);
         }
     }
-    public void TiltXm(InputAction.CallbackContext context)
+
+    private void rotationCheck()
     {
-        if (context.performed && player.GetComponent<PlayerControllerNew>().canTilt == true
-            && (currentRot.x >= 361 - maxRotation || currentRot.x <= maxRotation + 1))
+        if (transform.rotation.x > maxRotation)
         {
-            transform.Rotate(-rotationSpeed, 0, 0);
-        }
-    }
-    public void TiltZp(InputAction.CallbackContext context)
-    {
-        if (context.performed && player.GetComponent<PlayerControllerNew>().canTilt == true
-            && (currentRot.z <= maxRotation || currentRot.z >= 359 - maxRotation))
-        {
-            transform.Rotate(0, 0, rotationSpeed);
-        }
-    }
-    public void TiltZm(InputAction.CallbackContext context)
-    {
-        if (context.performed && player.GetComponent<PlayerControllerNew>().canTilt == true
-            && (currentRot.z >= 361 - maxRotation || currentRot.z <= maxRotation + 1))
-        {
-            transform.Rotate(0, 0, -rotationSpeed);
+            
         }
     }
  
     void Update () 
     {
-
         currentRot = GetComponent<Transform>().eulerAngles;
-        transform.rotation = Quaternion.Euler(currentRot.x, 0.0f, currentRot.z);
+        //transform.rotation = Quaternion.Euler(currentRot.x, 0.0f, currentRot.z);
+
+        Vector2 inputVector = inputMaster.Player.Tilt.ReadValue<Vector2>();
+        Vector3 tiltDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+
+        if (tiltDirection.magnitude >= 0.1f)
+        {
+            
+            transform.Rotate(tiltDirection * rotationSpeed);
+        }
 
     }
 }
