@@ -10,9 +10,9 @@ public class ForceElevation : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Vector3 currentVelocity = new Vector3(other.gameObject.GetComponent<PlayerControllerNew>().rigidBody.velocity.x,0,
-                        other.gameObject.GetComponent<PlayerControllerNew>().rigidBody.velocity.z);
-            other.gameObject.GetComponent<PlayerControllerNew>().rigidBody.velocity = new Vector3(currentVelocity.x, forcePower, currentVelocity.z);
+            Vector3 currentVelocity = new Vector3(other.gameObject.GetComponent<PlayerMainScript>().rigidBody.velocity.x,0,
+                        other.gameObject.GetComponent<PlayerMainScript>().rigidBody.velocity.z);
+            other.gameObject.GetComponent<PlayerMainScript>().rigidBody.velocity = new Vector3(currentVelocity.x, forcePower, currentVelocity.z);
 
 
         }
