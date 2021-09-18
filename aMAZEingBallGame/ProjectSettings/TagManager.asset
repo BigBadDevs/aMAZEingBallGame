@@ -12,6 +12,7 @@ TagManager:
   - TiltZone
   - Reset
   - spheremask
+  - SeeThrough
   layers:
   - Default
   - TransparentFX

@@ -20,13 +20,13 @@ public class RayCastCamera : MonoBehaviour
             out hit, Mathf.Infinity))
         {
 
-            if (hit.collider.gameObject.tag == "spheremask")
+            if (hit.collider.gameObject.tag == "spheremask" || hit.collider.gameObject.tag == "Untagged") 
             {
                 mask.transform.DOScale(0, 2);
                 Debug.Log("See");
             }
 
-            else
+            else 
             {
                 mask.transform.DOScale(6, 2);
                 Debug.Log("NOTSee");
