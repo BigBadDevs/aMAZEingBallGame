@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8525091669113803199}
   - component: {fileID: 8525091669113803194}
   - component: {fileID: 8525091669113803195}
-  - component: {fileID: 8525091671076963347}
+  - component: {fileID: 3512480406495684063}
   m_Layer: 0
   m_Name: Death Zone
   m_TagString: Reset
@@ -208,7 +208,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8525091671076963347
+--- !u!114 &3512480406495684063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,6 +217,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8525091669113803197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a9fef1ef34b6c4db7a4abec2acbee4, type: 3}
+  m_Script: {fileID: 11500000, guid: d6dc0316c9341a04da414b60413da270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
