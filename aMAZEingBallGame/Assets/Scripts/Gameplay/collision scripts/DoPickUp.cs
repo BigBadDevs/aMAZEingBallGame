@@ -8,7 +8,7 @@ public class DoPickUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerControllerNew>().scoreCount++;
+            other.gameObject.GetComponent<PlayerMainScript>().scoreCount++;
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             gameObject.GetComponent<Collider>().enabled = false;
         }

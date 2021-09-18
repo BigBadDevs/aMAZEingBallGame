@@ -11,7 +11,7 @@ public class Bounce : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerControllerNew>().rigidBody.AddForce((gameObject.transform.position - other.transform.position) * -forcePower);
+            other.gameObject.GetComponent<PlayerMainScript>().rigidBody.AddForce((gameObject.transform.position - other.transform.position) * -forcePower);
         }
     }
 }

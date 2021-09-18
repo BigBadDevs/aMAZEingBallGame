@@ -10556,6 +10556,11 @@ PrefabInstance:
       propertyPath: m_ChildCameras.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1579493533456424561, guid: 1608dcd9fb107a541807738385049210,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1615600642}
     - target: {fileID: 3358715192865293099, guid: 1608dcd9fb107a541807738385049210,
         type: 3}
       propertyPath: m_Name

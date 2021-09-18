@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerControllerNew : MonoBehaviour
+public class PlayerMainScript : MonoBehaviour
 {
     public Rigidbody rigidBody;
     public Transform cam;
@@ -38,22 +38,22 @@ public class PlayerControllerNew : MonoBehaviour
         {
             //calculate input direction using camera angle
             float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            
+
             //create a direction variable
             Vector3 moveTarget = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            
+
             //add force in direction of new variable
             rigidBody.AddForce(moveTarget.normalized * speed * Time.deltaTime, ForceMode.Force);
 
         }
     }
 
-    public void Jump (InputAction.CallbackContext context)
+    public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed && IsGrounded())
+        if (context.performed && IsGrounded())
         {
             rigidBody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        }    
+        }
     }
 
     bool IsGrounded()
@@ -68,3 +68,4 @@ public class PlayerControllerNew : MonoBehaviour
         retryCount++;
     }
 }
+

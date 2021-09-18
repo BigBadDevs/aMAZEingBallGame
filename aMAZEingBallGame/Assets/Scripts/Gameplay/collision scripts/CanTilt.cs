@@ -8,7 +8,7 @@ public class CanTilt : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerControllerNew>().canTilt=true;
+            other.gameObject.GetComponent<PlayerMainScript>().canTilt=true;
         }
     }
 
@@ -16,7 +16,7 @@ public class CanTilt : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerControllerNew>().canTilt = false;
+            other.gameObject.GetComponent<PlayerMainScript>().canTilt = false;
         }
     }
 }
