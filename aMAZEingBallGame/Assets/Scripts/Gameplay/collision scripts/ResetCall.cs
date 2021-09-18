@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reset : MonoBehaviour
+public class ResetCall : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerControllerNew>().Reset();
+            other.gameObject.GetComponent<PlayerMainScript>().Reset();
         }
     }
 }

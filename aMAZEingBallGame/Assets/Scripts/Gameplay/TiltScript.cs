@@ -27,7 +27,7 @@ public class TiltScript : MonoBehaviour {
 
     public void TiltXp(InputAction.CallbackContext context)
     {
-        if (context.performed && player.GetComponent<PlayerControllerNew>().canTilt == true
+        if (context.performed && player.GetComponent<PlayerMainScript>().canTilt == true
             && (currentRot.x <= maxRotation || currentRot.x >= 359 - maxRotation))
         {
             transform.Rotate(rotationSpeed, 0, 0);
@@ -44,17 +44,20 @@ public class TiltScript : MonoBehaviour {
  
     void Update () 
     {
-        currentRot = GetComponent<Transform>().eulerAngles;
-        //transform.rotation = Quaternion.Euler(currentRot.x, 0.0f, currentRot.z);
-
-        Vector2 inputVector = inputMaster.Player.Tilt.ReadValue<Vector2>();
-        Vector3 tiltDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
-
-        if (tiltDirection.magnitude >= 0.1f)
+        if (GameObject.Find("BALLPLAYER/Player").GetComponent<PlayerMainScript>().canTilt)
         {
-            
-            transform.Rotate(tiltDirection * rotationSpeed);
-        }
+            currentRot = GetComponent<Transform>().eulerAngles;
+            //transform.rotation = Quaternion.Euler(currentRot.x, 0.0f, currentRot.z);
 
+            Vector2 inputVector = inputMaster.Player.Tilt.ReadValue<Vector2>();
+            Vector3 tiltDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+
+            if (tiltDirection.magnitude >= 0.1f)
+            {
+
+                transform.Rotate(tiltDirection * rotationSpeed);
+            }
+
+        }
     }
 }
