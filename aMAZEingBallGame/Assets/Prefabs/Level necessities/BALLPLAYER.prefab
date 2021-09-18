@@ -108,7 +108,7 @@ Rigidbody:
   m_GameObject: {fileID: 772782983826803696}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.1
+  m_Drag: 0.4
   m_AngularDrag: 0.4
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   scoreCount: 0
   retryCount: 0
   jumpHeight: 4.5
+  speed: 0
 --- !u!1 &773501480231814814
 GameObject:
   m_ObjectHideFlags: 0
