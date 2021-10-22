@@ -22,7 +22,7 @@ public class PlayerMainScript : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         // playerInput = GetComponent<PlayerInput>();
 
-        speed = 200f;
+        speed = 250f;
 
         inputMaster = new InputMaster();
         inputMaster.Player.Enable();
