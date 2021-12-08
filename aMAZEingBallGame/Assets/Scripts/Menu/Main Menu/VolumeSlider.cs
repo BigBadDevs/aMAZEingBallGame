@@ -9,6 +9,6 @@ public class VolumeSlider : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("MasterVolume", volume);
-        Debug.Log(volume);
+        //Debug.Log(volume);
     }
 }

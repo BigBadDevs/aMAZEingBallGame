@@ -12,6 +12,10 @@ public class PlayerMainScript : MonoBehaviour
     public int retryCount;
     public float jumpHeight;
     public float speed;
+    public Material one;
+    public Material two;
+    public Material three;
+    public Material four;
 
     private InputMaster inputMaster;
 
@@ -27,6 +31,7 @@ public class PlayerMainScript : MonoBehaviour
         inputMaster = new InputMaster();
         inputMaster.Player.Enable();
         inputMaster.Player.Jump.performed += Jump;
+        GetSkin();
     }
 
     private void Update()
@@ -66,6 +71,31 @@ public class PlayerMainScript : MonoBehaviour
         rigidBody.velocity = new Vector3(0, 0, 0);
         transform.position = GameObject.Find("/world/Spawn point").transform.position;
         retryCount++;
+    }
+
+    void GetSkin()
+    {
+    
+     switch (GlobalVariables.skinSelect)
+     {
+         default:
+                GetComponent<Renderer>().material = one;
+                break;
+         case 1:
+
+                GetComponent<Renderer>().material = one;
+                break;
+
+         case 2:
+                GetComponent<Renderer>().material = two;
+                break;
+         case 3:
+                GetComponent<Renderer>().material = three;
+                break;
+         case 4:
+                GetComponent<Renderer>().material = four;
+                break;
+        }
     }
 }
 

@@ -103,6 +103,7 @@ public class SkinSelect : MonoBehaviour
                 ballPivotPoint.transform.DORotate(new Vector3(0, 90, 0), 1);
                 break;
         } // TODO: add global variable update for scene load
+        GlobalVariables.skinSelect = selection;
     }
 
 }
