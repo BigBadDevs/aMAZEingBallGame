@@ -16,7 +16,7 @@ public class LoadResults : MonoBehaviour
         if (other.CompareTag("Player"))               //Enables the Results screen > transfers timer data > disables game HUD
         {
             //change name to what ever the name of the main menu is called
-            SceneManager.LoadScene("MenuIvan");
+            SceneManager.LoadScene("MainMenu");
 
 
             /*      *when the HUD is done and time + score is reintergrated*
