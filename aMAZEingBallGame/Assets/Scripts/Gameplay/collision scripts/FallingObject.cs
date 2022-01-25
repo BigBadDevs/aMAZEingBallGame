@@ -15,9 +15,9 @@ public class FallingObject : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if (collision.gameObject.tag.Equals("Player")) 
+        if (other.gameObject.CompareTag("Player")) 
         {
             Invoke("PlatformDrop",dropDelay);
         }
